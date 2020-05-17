@@ -8,7 +8,7 @@ class ListCashFlowComponent extends Component {
         this.state = {
             message: null
         }
-        this.deleteCashFlowClicked = this.deleteCashFlowClicked.bind(this)
+        this.deleteCashFlowClicked  = this.deleteCashFlowClicked.bind(this)
     }
 
     deleteCashFlowClicked(id) {
