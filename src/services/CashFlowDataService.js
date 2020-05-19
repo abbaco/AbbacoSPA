@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const CASH_FLOW_API_URL = 'http://localhost:8080/cashFlows'
+const CASH_FLOW_API_URL = 'https://abbaco-api.herokuapp.com/cashFlows'
 
 class CashFlowDataService {
 
