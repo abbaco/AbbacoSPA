@@ -1,35 +1,20 @@
 import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
-import CashFlowDataService from '../api/services/CashFlows.service';
 import { ICashFlow } from '../api/models/CashFlow.model';
 
-class CashFlowList extends Component<{}, { cashFlows: Array<ICashFlow> }> {
+class CashFlowList extends Component<{ cashFlows: Array<ICashFlow> }, {}> {
 
   constructor(props: any) {
     super(props)
-    this.state = { cashFlows: new Array<ICashFlow>() }
-    this.refreshCashFlows = this.refreshCashFlows.bind(this);
-    this.formatDate = this.formatDate.bind(this);
-  }
 
-  public componentDidMount(): void {
-      this.refreshCashFlows();
+    this.formatDate = this.formatDate.bind(this);
   }
 
   public formatDate(dateInput: Date | undefined): string {
     const date = new Date (dateInput as unknown as string)
 
     return date.toLocaleDateString();
-  }
-  
-  public refreshCashFlows(): void {
-    CashFlowDataService.getAllCashFlows()
-        .then(
-            response => {
-                this.setState({ cashFlows: response.data._embedded.cashFlowDtoList })
-            }
-        )
   }
 
   render() {
@@ -49,7 +34,7 @@ class CashFlowList extends Component<{}, { cashFlows: Array<ICashFlow> }> {
 
             <tbody>
               {
-                this.state.cashFlows.map(
+                this.props.cashFlows.map(
                   cashFlow =>
                     <tr key={cashFlow.id}>
                       <td>{cashFlow.title}</td>
