@@ -34,7 +34,7 @@ class CashFlowList extends Component<{ cashFlows: Array<ICashFlow> }, {}> {
 
             <tbody>
               {
-                this.props.cashFlows.map(
+                this.props.cashFlows?.map(
                   cashFlow =>
                     <tr key={cashFlow.id}>
                       <td>{cashFlow.title}</td>

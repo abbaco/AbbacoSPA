@@ -17,7 +17,10 @@ class CashFlowForm extends Component<{refreshCashFlows: any}, { dropdownOptions:
   
   public onSubmit(values: any) {
     CashFlowDataService.createCashFlow(values)
-      .then(this.props.refreshCashFlows())
+      .finally(
+        () => {
+          this.props.refreshCashFlows();
+        });
   }
 
   public componentDidMount(): void {
