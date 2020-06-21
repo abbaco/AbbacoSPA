@@ -6,8 +6,8 @@ const CASH_FLOW_API_URL = `http://localhost:${port}/api/cash-flows`
 
 class CashFlowDataService {
 
-    getAllCashFlows(): Promise<AxiosResponse<any>> {
-        return axios.get(CASH_FLOW_API_URL);
+    getAllCashFlows(filterValues?: any): Promise<AxiosResponse<any>> {
+        return axios.get(CASH_FLOW_API_URL, filterValues);
     }
 
     public createCashFlow(cashFlow: ICashFlow): Promise<AxiosResponse<any>> {

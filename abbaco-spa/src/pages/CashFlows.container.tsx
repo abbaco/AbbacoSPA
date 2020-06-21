@@ -26,8 +26,8 @@ class CashFlowsContainer extends Component<{}, { cashFlows: Array<ICashFlow>, wo
     this.refreshCashFlows();
   }
 
-  public refreshCashFlows(): void {
-    CashFlowDataService.getAllCashFlows()
+  public refreshCashFlows(filterValues?: any): void {
+    CashFlowDataService.getAllCashFlows(filterValues)
         .then(
             response => {
                 this.setState({ cashFlows: response.data._embedded?.cashFlowDtoList })

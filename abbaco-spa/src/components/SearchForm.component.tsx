@@ -4,6 +4,7 @@ import CashFlowClassifierDataService from '../api/services/CashFlowClassifiers.s
 import { Formik, Form, Field } from 'formik';
 import CashFlowDataService from '../api/services/CashFlows.service';
 import Nav from 'react-bootstrap/Nav';
+import { SelectField } from './SelectField';
 
 class SearchFormComponent extends Component<{refreshCashFlows: any}, { dropdownOptions: Array<IDropdownPage> }> {
 
@@ -16,6 +17,7 @@ class SearchFormComponent extends Component<{refreshCashFlows: any}, { dropdownO
   }
   
   public onSubmit(values: any) {
+    this.props.refreshCashFlows(values);
   }
 
   public componentDidMount(): void {
@@ -51,28 +53,51 @@ class SearchFormComponent extends Component<{refreshCashFlows: any}, { dropdownO
           >
             {props => (
               <Form className="col-12" >
+              <label>Filter List</label>
+                
                 <Nav.Item className="col-12">
+
+                <label>Date</label>
                   <fieldset className="form-group">
                     <Field
                       className="form-control"
                       type="date"
-                      name="creationDate"
-                      label="Date"
-                      placeholder="Date"
+                      name="minCreationDate"
+                      label="minCreationDate"
+                      placeholder="Min. Date"
+                    />
+                    <Field
+                      className="form-control"
+                      type="date"
+                      name="maxCreationDate"
+                      label="maxCreationDate"
+                      placeholder="Max. Date"
                     />
                   </fieldset>
+
                 </Nav.Item>
+
                 <Nav.Item className="col-12">
-                  <fieldset  className="form-group">
+
+                <label>Cash</label>
+                  <fieldset className="form-group">
                     <Field
                       className="form-control"
                       type="number"
-                      name="cashAmount"
-                      placeholder="Cash"
+                      name="minCashAmount"
+                      placeholder="Min. Cash"
+                    />
+                    <Field
+                      className="form-control"
+                      type="number"
+                      name="maxCashAmount"
+                      placeholder="Max. Cash"
                     />
                   </fieldset>
+
                 </Nav.Item>
                 <Nav.Item className="col-12">
+                <label>Description</label>
                   <fieldset className="form-group">
                     <Field
                       className="form-control"
@@ -83,9 +108,19 @@ class SearchFormComponent extends Component<{refreshCashFlows: any}, { dropdownO
                   </fieldset>
                 </Nav.Item>
 
-                <button className="btn btn-success offset-2 col-10" type="submit">
-                  Save
-            </button>
+                <Nav.Item className="col-12">
+                <label>Classifier</label>
+                  <fieldset className="form-group">
+                    <Field name={'classificationId'} component={SelectField} options={options} />
+                  </fieldset>
+                </Nav.Item>
+
+                <Nav.Item className="col-3 offset-8">
+                  <button className="btn btn-primary" type="submit">
+                    Filter
+                  </button>
+                </Nav.Item>
+
               </Form>
             )}
           </Formik>
