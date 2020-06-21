@@ -62,15 +62,15 @@ class SearchFormComponent extends Component<{refreshCashFlows: any}, { dropdownO
                     <Field
                       className="form-control"
                       type="date"
-                      name="minCreationDate"
-                      label="minCreationDate"
+                      name="minDate"
+                      label="minDate"
                       placeholder="Min. Date"
                     />
                     <Field
                       className="form-control"
                       type="date"
-                      name="maxCreationDate"
-                      label="maxCreationDate"
+                      name="maxDate"
+                      label="maxDate"
                       placeholder="Max. Date"
                     />
                   </fieldset>
