@@ -13,6 +13,10 @@ class CashFlowDataService {
     public createCashFlow(cashFlow: ICashFlow): Promise<AxiosResponse<any>> {
         return axios.post(CASH_FLOW_API_URL, cashFlow);
     }
+
+    public deleteCashFlow(cashFlowId: number): Promise<AxiosResponse<any>> {
+        return axios.delete(`${CASH_FLOW_API_URL}/${cashFlowId}`);
+    }
 }
 
 export default new CashFlowDataService()

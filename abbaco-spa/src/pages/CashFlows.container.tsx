@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
 import CashFlowForm from '../components/CashFlowForm.component';
 import CashFlowList from '../components/CashFlowList.component';
 import { ICashFlow } from '../api/models/CashFlow.model';
@@ -57,26 +59,28 @@ class CashFlowsContainer extends Component<{}, { cashFlows: Array<ICashFlow>, wo
 
   render() {
     return (
-    <>
+    <>      
+        <Row>
+          <Col id="sidebar-wrapper" className="col-3">
+            <SearchFormComponent refreshCashFlows={this.refreshCashFlows.bind(this)} />
+          </Col>
 
-      <Row>
-        <Col><AmountComponent className="text-success" amount={ this.state.wonAmount } iconName="plus-circle" /></Col>
-        <Col><AmountComponent className="text-primary" amount={ this.state.balanceAmount } iconName="balance-scale" /></Col>
-        <Col><AmountComponent className="text-danger" amount={ this.state.lostAmount } iconName="minus-circle" /></Col>
-      </Row>
+          <Container className="col-9">
+            <Row>
+              <Col><AmountComponent className="text-success" amount={this.state.wonAmount} iconName="plus-circle" /></Col>
+              <Col><AmountComponent className="text-primary" amount={this.state.balanceAmount} iconName="balance-scale" /></Col>
+              <Col><AmountComponent className="text-danger" amount={this.state.lostAmount} iconName="minus-circle" /></Col>
+            </Row>
 
-      <Row>
-        <Col><SearchFormComponent refreshCashFlows={ this.refreshCashFlows.bind(this) }/></Col>
-      </Row>
+            <Row>
+              <Col><CashFlowForm refreshCashFlows={this.refreshCashFlows.bind(this)} /></Col>
+            </Row>
 
-      <Row>
-        <Col><CashFlowForm refreshCashFlows={ this.refreshCashFlows.bind(this) }/></Col>
-      </Row>
-
-      <Row>
-        <Col><CashFlowList cashFlows={ this.state.cashFlows } /></Col>
-      </Row>
-
+            <Row>
+              <Col><CashFlowList refreshCashFlows={this.refreshCashFlows.bind(this)} cashFlows={this.state.cashFlows} /></Col>
+            </Row>
+          </Container>
+        </Row>
     </>
   );
 }
