@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import { ICashFlow } from '../api/models/CashFlow.model';
+import CashFlowDataService from '../api/services/CashFlows.service';
 
-class CashFlowList extends Component<{ cashFlows: Array<ICashFlow> }, {}> {
+class CashFlowList extends Component<{ cashFlows: Array<ICashFlow>, refreshCashFlows: any }, {}> {
 
   constructor(props: any) {
     super(props)
@@ -15,6 +16,16 @@ class CashFlowList extends Component<{ cashFlows: Array<ICashFlow> }, {}> {
     const date = new Date (dateInput as unknown as string)
 
     return date.toLocaleDateString();
+  } 
+
+  public deleteCashFlowClicked(id: number | undefined): void {
+    if (!id) return;
+
+    CashFlowDataService.deleteCashFlow(id)
+        .finally(
+            () => { this.props.refreshCashFlows() }
+        )
+
   }
 
   render() {
@@ -41,7 +52,7 @@ class CashFlowList extends Component<{ cashFlows: Array<ICashFlow> }, {}> {
                       <td>{cashFlow.classification}</td>
                       <td>{this.formatDate(cashFlow.creationDate)}</td>
                       <td>{cashFlow.cashAmount}</td>
-                      <td><button className="btn btn-danger">Delete</button></td>
+                      <td><button className="btn btn-danger" onClick={() => this.deleteCashFlowClicked(cashFlow.id)}>Delete</button></td>
                     </tr>
                 )
               }
