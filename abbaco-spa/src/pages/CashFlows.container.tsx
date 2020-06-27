@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
 import CashFlowForm from '../components/CashFlowForm.component';
 import CashFlowList from '../components/CashFlowList.component';
 import { ICashFlow } from '../api/models/CashFlow.model';
@@ -37,11 +36,10 @@ class CashFlowsContainer extends Component<{}, { cashFlows: Array<ICashFlow>, wo
   }
 
   private setAmounts(cashFlows: Array<ICashFlow>){
-    if(!cashFlows) return;
-    
     let won: number = 0;
     let lost: number = 0;
 
+    if(cashFlows){
     cashFlows.forEach(cashFlow => {
       if (cashFlow.cashAmount && cashFlow.cashAmount > 0){
         won = won + cashFlow.cashAmount
@@ -50,6 +48,7 @@ class CashFlowsContainer extends Component<{}, { cashFlows: Array<ICashFlow>, wo
         lost = lost + cashFlow.cashAmount
       }
     });
+  }
 
     this.setState({ 
       wonAmount: won,

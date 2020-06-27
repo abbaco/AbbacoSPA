@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import { ICashFlow } from '../api/models/CashFlow.model';
 import CashFlowDataService from '../api/services/CashFlows.service';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class CashFlowList extends Component<{ cashFlows: Array<ICashFlow>, refreshCashFlows: any }, {}> {
 
@@ -39,7 +40,7 @@ class CashFlowList extends Component<{ cashFlows: Array<ICashFlow>, refreshCashF
                 <th>Classification</th>
                 <th>Date</th>
                 <th>Amount</th>
-                <th>#</th>
+                <th></th>
               </tr>
             </thead>
 
@@ -52,7 +53,11 @@ class CashFlowList extends Component<{ cashFlows: Array<ICashFlow>, refreshCashF
                       <td>{cashFlow.classification}</td>
                       <td>{this.formatDate(cashFlow.creationDate)}</td>
                       <td>{cashFlow.cashAmount}</td>
-                      <td><button className="btn btn-danger" onClick={() => this.deleteCashFlowClicked(cashFlow.id)}>Delete</button></td>
+                      <td>
+                        <button className="btn" onClick={() => this.deleteCashFlowClicked(cashFlow.id)}>
+                          <FontAwesomeIcon style={{ fontSize: 20 }} className="text-danger" icon="trash" />
+                        </button>
+                      </td>
                     </tr>
                 )
               }

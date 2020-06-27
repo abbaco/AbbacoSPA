@@ -6,8 +6,10 @@ class AmountComponent extends Component<{ amount: number, iconName: string, clas
   render() {
     return (
         <>
-            <FontAwesomeIcon className={this.props.className} icon={this.props.iconName as IconProp} />
-            <span>{ this.props.amount }</span>
+            <div style={{ fontSize: 65 }} className="col">
+                <FontAwesomeIcon className={this.props.className} icon={this.props.iconName as IconProp} />
+                <span>{ this.props.amount }</span>
+            </div>
         </>
         
     )

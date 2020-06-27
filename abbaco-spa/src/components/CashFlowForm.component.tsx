@@ -4,6 +4,7 @@ import CashFlowClassifierDataService from '../api/services/CashFlowClassifiers.s
 import CashFlowDataService from '../api/services/CashFlows.service';
 import { IDropdownPage, IDropdownAPI } from '../api/models/Dropdowns.model';
 import { SelectField } from './SelectField';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class CashFlowForm extends Component<{refreshCashFlows: any}, { dropdownOptions: Array<IDropdownPage> }> {
 
@@ -53,7 +54,8 @@ class CashFlowForm extends Component<{refreshCashFlows: any}, { dropdownOptions:
       >
         {props => (
           <Form className="row">
-            <fieldset className="form-group col">
+            <div className="col">
+            <fieldset className="form-group">
               <Field
                 className="form-control"
                 type="date"
@@ -62,7 +64,9 @@ class CashFlowForm extends Component<{refreshCashFlows: any}, { dropdownOptions:
                 placeholder="Date"
               />
             </fieldset>
-            <fieldset className="form-group col">
+            </div>
+            <div className="col">
+            <fieldset className="form-group">
               <Field
                 className="form-control"
                 type="number"
@@ -70,7 +74,9 @@ class CashFlowForm extends Component<{refreshCashFlows: any}, { dropdownOptions:
                 placeholder="Cash"
               />
             </fieldset>
-            <fieldset className="form-group col">
+            </div>
+            <div className="col">
+            <fieldset className="form-group">
               <Field
                 className="form-control"
                 type="text"
@@ -78,13 +84,18 @@ class CashFlowForm extends Component<{refreshCashFlows: any}, { dropdownOptions:
                 placeholder="Description"
               />
             </fieldset>
+            </div>
 
-            <fieldset className="form-group col">
+            <div className="col">
+            <fieldset className="form-group">
               <Field name={'classificationId'} component={SelectField} options={options} />
             </fieldset>
-            <button className="btn btn-success col" type="submit">
-              Save
+            </div>
+            <div className="col">
+            <button className="btn" type="submit">
+              <FontAwesomeIcon style={{ fontSize: 30 }} className="text-success" icon="save" />
             </button>
+            </div>
           </Form>
         )}
       </Formik>
