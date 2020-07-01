@@ -42,7 +42,7 @@ class SearchFormComponent extends Component<{refreshCashFlows: any}, { dropdownO
     let options = this.state.dropdownOptions;
     return (
       <>
-        <Nav className="col-12 d-none d-md-block bg-light sidebar">
+        <Nav className="col-3 d-none d-md-block bg-light sidebar">
           <div className="sidebar-sticky"></div>
           <Formik
             initialValues={Object}
