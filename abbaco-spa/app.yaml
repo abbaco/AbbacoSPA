@@ -1,10 +1,10 @@
 runtime: nodejs10
 
 handlers:
--url: /(.*\..+)$
+- url: /(.*\..+)$
   static_files: build/\1
   upload: build/(.*\..+)$
   
--url: /.*
+- url: /.*
   static_files: build/index.html
   upload: build/index.html
