@@ -32,12 +32,13 @@ class CashFlowForm extends Component<{refreshCashFlows: any}, { dropdownOptions:
     CashFlowClassifierDataService.getAllCashFlowClassifiers()
       .then(
         response => {
-          this.setState({ dropdownOptions: this.mapApiDropdownToPage(response.data._embedded.cashFlowClassifierDtoList) })
+          this.setState({ dropdownOptions: this.mapApiDropdownToPage(response.data._embedded?.cashFlowClassifierDtoList) })
         }
       )
   }
 
   private mapApiDropdownToPage(values: Array<IDropdownAPI>): Array<IDropdownPage> {
+    if (!values) return new Array<IDropdownPage>();
     const result = values.map(value => new Object({ value: value.id, label: value.name }));
     return result as IDropdownPage[];
   }

@@ -2,13 +2,14 @@ import axios, { AxiosResponse } from 'axios'
 import { ICashFlow } from '../models/CashFlow.model';
 
 const port = '8080'
-const CASH_FLOW_API_URL = `http://localhost:${port}/api/cash-flows`
+// const CASH_FLOW_API_URL = `http://localhost:${port}/api/cash-flows`
+const CASH_FLOW_API_URL = `https://abbaco-api.oa.r.appspot.com/api/cash-flows`
 
 class CashFlowDataService {
 
     getAllCashFlows(cashFlowsFilters?: any): Promise<AxiosResponse<any>> {
         const query = this.getQuery(cashFlowsFilters);
-        return axios.get(`${CASH_FLOW_API_URL}?${query}`)
+        return axios.get(`${CASH_FLOW_API_URL}?${query}`);
     }
 
     public createCashFlow(cashFlow: ICashFlow): Promise<AxiosResponse<any>> {

@@ -28,12 +28,13 @@ class SearchFormComponent extends Component<{refreshCashFlows: any}, { dropdownO
     CashFlowClassifierDataService.getAllCashFlowClassifiers()
       .then(
         response => {
-          this.setState({ dropdownOptions: this.mapApiDropdownToPage(response.data._embedded.cashFlowClassifierDtoList) })
+          this.setState({ dropdownOptions: this.mapApiDropdownToPage(response.data._embedded?.cashFlowClassifierDtoList) })
         }
       )
   }
 
   private mapApiDropdownToPage(values: Array<IDropdownAPI>): Array<IDropdownPage> {
+    if(!values) return new Array<IDropdownPage>();
     const result = values.map(value => new Object({ value: value.id, label: value.name }));
     return result as IDropdownPage[];
   }
@@ -42,8 +43,8 @@ class SearchFormComponent extends Component<{refreshCashFlows: any}, { dropdownO
     let options = this.state.dropdownOptions;
     return (
       <>
-        <Nav className="col-3 d-none d-md-block bg-light sidebar">
-          <div className="sidebar-sticky"></div>
+      <div className="col-3">
+        <Nav className="d-none d-md-block bg-light sidebar">
           <Formik
             initialValues={Object}
             onSubmit={this.onSubmit}
@@ -125,7 +126,7 @@ class SearchFormComponent extends Component<{refreshCashFlows: any}, { dropdownO
             )}
           </Formik>
         </Nav>
-
+        </div>
       </>
     );
   }
