@@ -3,7 +3,7 @@ import { ICashFlow } from '../models/CashFlow.model';
 
 const port = '8080'
 // const CASH_FLOW_API_URL = `http://localhost:${port}/api/cash-flows`
-const CASH_FLOW_API_URL = `https://abbaco-api.oa.r.appspot.com/api/cash-flows`
+const CASH_FLOW_API_URL = `https://abbaco-api-282309.oa.r.appspot.com/api/cash-flows`
 
 class CashFlowDataService {
 
