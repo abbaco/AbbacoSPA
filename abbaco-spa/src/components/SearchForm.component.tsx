@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { IDropdownPage, IDropdownAPI } from '../api/models/Dropdowns.model';
 import CashFlowClassifierDataService from '../api/services/CashFlowClassifiers.service';
 import { Formik, Form, Field } from 'formik';
-import CashFlowDataService from '../api/services/CashFlows.service';
 import Nav from 'react-bootstrap/Nav';
 import { SelectField } from './SelectField';
 
